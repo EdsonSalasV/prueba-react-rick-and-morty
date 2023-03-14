@@ -35,12 +35,18 @@ function App() {
 
   const fetchCharacter = (urlApi) => {
     fetch(urlApi)
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response;
+    })
     .then((response) => response.json())
     .then ((data) => {
       setCharacter(data.results);
       setInfo(data.info);
     })
-
+    .catch(err =>  setCharacter([]))
   };
 
 
@@ -55,7 +61,7 @@ function App() {
 
   useEffect(()=>{
     fetchCharacter(urlApi);
-  },[])
+  },[search])
 
 
   /* const searcher =(e) => {
@@ -75,7 +81,7 @@ function App() {
       </input> */}
 
       <div className='container'>
-        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
+        <Pages setPageNumber={setPageNumber} prev={info.prev ? info.prev : null} next={info.next ? info.next : null} anterior={anterior} siguiente={siguiente} />
 
         <Character character={character} /* search={search} *//>
 
