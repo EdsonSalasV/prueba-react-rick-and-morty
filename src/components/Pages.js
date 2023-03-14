@@ -1,20 +1,20 @@
-import { isDisabled } from '@testing-library/user-event/dist/utils';
-import React from 'react'
+import React, { useState } from 'react'
 
 
-const Pages = ({pageNumber, setpageNumber, anterior, siguiente}) => {
+const Pages = ({pageNumber, anterior, siguiente}) => {
 
+const [botonActivo, setBotonActivo]=useState(false)
 
-
-    const handleAnt = ()=>{
-        if(pageNumber === 1 ){
-            handleAnt = 'disabled' ; 
-        }
+    const handleAnt = ()=>{ 
+        if(pageNumber === 1){
+            setBotonActivo(false);
+        }else{
+            setBotonActivo(true);
+        }       
         anterior(); 
     }
 
-    const handleSig = ()=>{
-        
+    const handleSig = ()=>{        
         siguiente();
     }
 
@@ -32,7 +32,7 @@ const Pages = ({pageNumber, setpageNumber, anterior, siguiente}) => {
         <ul className='pagination justify-content-center mt-4'>
             
             <li className='page-item'>
-                <button className='page-link' onClick={handleAnt}>
+                <button className='page-link' disabled={!botonActivo} onClick={handleAnt}>
                     Anterior
                 </button>
             </li>

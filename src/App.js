@@ -39,7 +39,7 @@ function App() {
     fetch(urlApi)
       .then((response) => {
         if (!response.ok) {
-          throw Error(response.statusText)
+          throw Error(response.statusText);
         }
         return response;
       })
@@ -85,11 +85,11 @@ function App() {
       </input> */}
 
       <div className='container'>
-      <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
+      <Pages setPageNumber={setPageNumber} prev={info.prev ? info.prev : null} next={info.next ? info.next : null} anterior={anterior} siguiente={siguiente} />
 
         <Character character={character} search={search} />
 
-        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
+        <Pages setPageNumber={setPageNumber} prev={info.prev ? info.prev : null} next={info.next ? info.next : null} anterior={anterior} siguiente={siguiente} />
       </div>
 
     </div>
