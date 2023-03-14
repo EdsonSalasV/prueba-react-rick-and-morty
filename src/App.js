@@ -45,8 +45,12 @@ function App() {
     .then ((data) => {
       setCharacter(data.results);
       setInfo(data.info);
+      console.log(info)
     })
-    .catch(err =>  setCharacter([]))
+    .catch(err =>  {
+      setCharacter([])
+      setInfo([])
+    })
   };
 
 
@@ -61,6 +65,7 @@ function App() {
 
   useEffect(()=>{
     fetchCharacter(urlApi);
+    console.log(info)
   },[search])
 
 
@@ -81,11 +86,11 @@ function App() {
       </input> */}
 
       <div className='container'>
-        <Pages setPageNumber={setPageNumber} prev={info.prev ? info.prev : null} next={info.next ? info.next : null} anterior={anterior} siguiente={siguiente} />
+        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
 
         <Character character={character} /* search={search} *//>
 
-        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente}/>
+        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
       </div>
 
     </div>
