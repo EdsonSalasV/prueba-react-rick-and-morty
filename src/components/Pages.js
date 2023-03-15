@@ -1,16 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 
-const Pages = ({pageNumber, anterior, siguiente}) => {
+const Pages = ({prev, next, anterior, siguiente}) => {
 
-const [botonActivo, setBotonActivo]=useState(false)
 
-    const handleAnt = ()=>{ 
-        if(pageNumber === 1){
-            setBotonActivo(false);
-        }else{
-            setBotonActivo(true);
-        }       
+    const handleAnt = ()=>{   
         anterior(); 
     }
 
@@ -18,31 +12,26 @@ const [botonActivo, setBotonActivo]=useState(false)
         siguiente();
     }
 
-    /* if(pageNumber === 1) return; 
-        let prev = () => {
-            setPageNumber ((x) => x-1)
-        };
-    
-        let next = () => {
-            setPageNumber((x)=> x+1)
-        }; */
-
   return (
-    <nav>
-        <ul className='pagination justify-content-center mt-4'>
-            
+    <nav className='container'>
+    <ul className='pagination justify-content-center mt-4 gap-5'>
+        {
+            prev != null ? 
             <li className='page-item'>
-                <button className='page-link' disabled={!botonActivo} onClick={handleAnt}>
+                <button className='page-link' onClick={handleAnt}>
                     Anterior
                 </button>
-            </li>
+            </li> : ""
+        }
 
-
-            <li className='page-item'>
-                <button className='page-link' onClick={handleSig}>
-                    Siguiente
-                </button>
-            </li>
+        {
+            next != null ? 
+                <li className='page-item'>
+                    <button className='page-link' onClick={handleSig}>
+                        Siguiente
+                    </button>
+                </li> : ""
+        }
         </ul>
     </nav>
   )

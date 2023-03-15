@@ -5,10 +5,8 @@ const Character = ({ character, search}) => {
     if (!search) {
         results = character
     } else {
-        results = character.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()) ||
-            item.status.toLowerCase().includes(search.toLowerCase()))/* || 
-            info.filter((info)=> info.count.toLowerCase().includes(search.toLowerCase()))
-    } */
+        results = character.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase()))
     }
     const [orden, setOrden] = useState ('')
 

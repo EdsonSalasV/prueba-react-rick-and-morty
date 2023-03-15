@@ -12,11 +12,10 @@ function App() {
   /* const searchComponent = () =>{
 
     const [users, setUsers] = useState([]) */
-  
-
+    
   const [search, setSearch] = useState('')
 
-  const [pageNumber, setPageNumber] = useState(0)
+  const [pageNumber, setPageNumber] = useState(1)
 
   const [character, setCharacter] = useState([])
 
@@ -39,7 +38,7 @@ function App() {
     fetch(urlApi)
       .then((response) => {
         if (!response.ok) {
-          throw Error(response.statusText);
+          throw Error(response.statusText)
         }
         return response;
       })
@@ -79,17 +78,17 @@ function App() {
 
       <Navbar />
 
-      <Search /* search={search} */ setSearch={setSearch} />
+      <Search search={search} setSearch={setSearch} />
       {/* <input value={search} onChange={searcher} type='text' placeholder='buscar' className='form-control w-25'>
 
       </input> */}
 
       <div className='container'>
-      <Pages setPageNumber={setPageNumber} prev={info.prev ? info.prev : null} next={info.next ? info.next : null} anterior={anterior} siguiente={siguiente} />
-
+        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
+        
         <Character character={character} search={search} />
 
-        <Pages setPageNumber={setPageNumber} prev={info.prev ? info.prev : null} next={info.next ? info.next : null} anterior={anterior} siguiente={siguiente} />
+        <Pages setPageNumber={setPageNumber} prev={info.prev} next={info.next} anterior={anterior} siguiente={siguiente} />
       </div>
 
     </div>
